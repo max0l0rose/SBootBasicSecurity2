@@ -7,13 +7,18 @@
     <title>Introduction to SpringBoot Security</title>
     <meta charset="UTF-8"/>
     <link th:href="@{/bootstrap.min.css}" rel="stylesheet">
+    <style>
+        .mybrd {
+            border: 1px solid red;
+        }
+    </style>
 <!--    <link th:href="@{~/fontawesome/css/all.css}" rel="stylesheet">-->
 </head>
 <body>
 
 <!-- Fragment #2 : Navbar contains nav links -->s
 <div th:fragment="nav">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <a class="navbar-brand" href="#">Boot Security</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -30,7 +35,7 @@
                 <li sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')" class="nav-item">
                     <a class="nav-link" href="#" th:href="@{/management/index}">Management</a>
                 </li>
-                <li sec:authorize="true">
+                <li sec:authorize="false">
                     | [[${#httpServletRequest.requestURI}]] |
                     [[${#httpServletRequest.requestURI.contains('login')}]] |
                     [[${#httpServletRequest}]] |
@@ -38,14 +43,17 @@
                     locale=[[${#locale}]]
                 </li>
             </ul>
-<!--            <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">-->
-                <button sec:authorize="isAuthenticated()"
-                        class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Logout</button>
-                <button sec:authorize="isAnonymous() && not #httpServletRequest.requestURI.contains('login')"
-                        th:href="@{~/login}"
-                        class="btn btn-outline-info my-2 my-sm-0 btn-sm" type="submit">Login</button>
-<!--            </form>-->
         </div>
+        <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/mylogout}">
+<!--                    th:href="@{~/login}"-->
+            <button sec:authorize="isAnonymous() && not #httpServletRequest.requestURI.contains('login')"
+                    class="btn btn-outline-info my-2 my-sm-0 btn-sm"
+                    type="submit">Login</button>
+            <button sec:authorize="isAuthenticated()"
+                    class="btn btn-outline-danger my-2 my-sm-0 btn-sm"
+                    type="submit">Logout</button>
+
+        </form>
     </nav>
 </div>
 </body>

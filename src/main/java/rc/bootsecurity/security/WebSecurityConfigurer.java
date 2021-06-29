@@ -43,11 +43,18 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                         .permitAll()
                     .usernameParameter("txtUsername")
                     .passwordParameter("txtPassword")
+
                 .and()
                 .logout()
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .logoutSuccessUrl("/")
+//                    .logoutSuccessUrl("/login")
                 .and()
+
+//                .logout()
+//                .logoutUrl("/perform_logout")
+//                .invalidateHttpSession(true)
+//                .deleteCookies("JSESSIONID")
+
                 .rememberMe()
                     .tokenValiditySeconds(2592000)
                     .key("mySecret!")
