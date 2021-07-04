@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments.html :: headerfiles"></head>
+<body>
+<header th:insert="fragments.html :: nav"></header>
+<!-- Page content goes here -->
+<div class="container">
+    <div class="jumbotron bg-warning">
+        <h1 class="display-4">Error [[${#request.getAttribute("javax.servlet.error.status_code")}]]</h1>
+        <p class="lead">
+            1 - '[[${param.size()}]]'<br>
+            2 - '[[${param[0]}]]'<br>
+            3 - '[[${err}]]'<br>
+            4 - '[[${#request.getAttribute("javax.servlet.forward.context_path")}]]'<br>
+            5 - '[[${#request.getAttribute("javax.servlet.error.request_uri")}]]'<br>
+            6 - '[[${#model}]]'<br>
+            7 - '[[${#response}]]'<br>
+            8 - '[[${#servletContext}]]'<br>
+            9 - '[[${exception}]]'<br>
+        </p>
+<!--        javax.servlet.error.status_code-->
+        <hr class="my-4">
+        <p>Using this example, you will become more familiar with Spring Security concepts:)</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="https://spring.io/projects/spring-security" role="button">
+                Learn more about Spring Security</a>
+        </p>
+    </div>
+</div>
+</body>
+</html>

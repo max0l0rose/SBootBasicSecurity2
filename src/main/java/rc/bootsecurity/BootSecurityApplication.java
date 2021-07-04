@@ -19,6 +19,7 @@ public class BootSecurityApplication extends SpringBootServletInitializer
 
     public static void main(String[] args) {
         SpringApplication.run(BootSecurityApplication.class, args);
+        System.out.println("222222222222");
     }
 
 //    @Bean

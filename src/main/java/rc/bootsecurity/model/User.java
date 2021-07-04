@@ -1,20 +1,36 @@
 package rc.bootsecurity.model;
 
+import lombok.*;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotNull(message = "* Name may not be null........")
+    @Size(min=10, max=20, message = "* Size name 10-20")
+    @NotEmpty(message = "* Name may not be empty.")
     @Column(nullable = false)
     private String username;
 
+    @NotNull(message = "* Name may not be null........")
+    @Size(min=3, max=10, message = "* Size passw 3-10")
+    @NotEmpty(message = "* Name may not be empty.")
     @Column(nullable = false)
     private String password;
 
@@ -23,40 +39,6 @@ public class User {
     private String roles = "";
 
     private String permissions = "";
-
-    public User(String username, String password, String roles, String permissions){
-        this.username = username;
-        this.password = password;
-        this.roles = roles;
-        this.permissions = permissions;
-        this.active = 1;
-    }
-
-    protected User(){}
-
-    public long getId() {
-        return id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public int getActive() {
-        return active;
-    }
-
-    public String getRoles() {
-        return roles;
-    }
-
-    public String getPermissions() {
-        return permissions;
-    }
 
     public List<String> getRoleList(){
         if(this.roles.length() > 0){
