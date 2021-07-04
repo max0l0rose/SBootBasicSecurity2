@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import rc.bootsecurity.model.User;
-import rc.bootsecurity.model.UserDTO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +20,7 @@ import javax.validation.Valid;
 @RequestMapping("/")
 public class HomeController {
 
-    @GetMapping("/")
+    @GetMapping(value = {"/", "index"})
     public String index(ModelMap model
 //            , @RequestHeader(name = "errorcode") String h1
 //            , @RequestHeader(name = "Content-Type") String h2
@@ -45,15 +44,18 @@ public class HomeController {
                               Model model,
                               //HttpServletRequest httpServletRequest,
                               RedirectAttributes redirectAttributes,
-                              HttpSession session,
+                              //HttpSession session,
                               @Valid User user, BindingResult bindingResult
     ) {
+        redirectAttributes.addFlashAttribute("user", user);
         if(bindingResult.hasErrors()) {
             return "/register";
         }
 
-        model.addAttribute("message", "Success. Person: " + user.toString());
+        //model.addAttribute("message", "Success. Person: " + user.getUsername());
         redirectAttributes.addAttribute("regsuccess", "1");
+        redirectAttributes.addFlashAttribute("message", user.getUsername());
+
         //request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
         return "redirect:/login";
     }
@@ -61,8 +63,10 @@ public class HomeController {
 
     //@GetMapping("login")
     @RequestMapping(value = "login", method = {RequestMethod.GET, RequestMethod.POST})
-    public String login(ModelMap model) {
-        model.addAttribute("user", new User());
+    public String login(Model model) {
+        if (!model.containsAttribute("user")) {
+            model.addAttribute("user", new User());
+        }
         return "/login";
     }
 
@@ -70,14 +74,14 @@ public class HomeController {
     @RequestMapping(value = "error", method = {RequestMethod.GET, RequestMethod.POST})
     //@ExceptionHandler()
     public void error(HttpServletRequest request
-                        , HttpServletResponse resp
+                        //, HttpServletResponse resp
                         //, @RequestHeader(name = "errorcode") String errorCode
                         , Model model
                         , RedirectAttributes ra
                         )
     {
         model.addAttribute("err", "qqqqq");
-        ra.addAttribute("err", "qqqqq");
+        ra.addFlashAttribute("err", "qqqqq");
         //int err = (Integer) request.getAttribute("javax.servlet.error.status_code");
         //return "/error1111";
     }
@@ -87,9 +91,16 @@ public class HomeController {
     @PostMapping("mysignin")
     public String signin(//RedirectAttributes ra
                          HttpServletRequest request
+                        , RedirectAttributes redirectAttributes
+                        , @Valid User user
+                        , BindingResult bindingResult
                         ) {
+        redirectAttributes.addFlashAttribute("user", user);
+        if(bindingResult.hasErrors()) {
+            return "/login";
+        }
         request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
-        return "redirect:/mylogout";//signin";
+        return "redirect:/signin";//signin";
     }
 
 

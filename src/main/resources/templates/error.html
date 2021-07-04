@@ -9,6 +9,15 @@
         <h1 class="display-4">Error [[${#request.getAttribute("javax.servlet.error.status_code")}]]</h1>
         <p class="lead">
             1 - '[[${param.size()}]]'<br>
+
+
+            <div th:if="${param.size()>0}">
+                Params:
+                <ul th:each="a : ${param}">
+                    <li th:text="|${a.key} - ${a.value[0]}|"></li>
+                </ul>
+            </div>
+
             2 - '[[${param[0]}]]'<br>
             3 - '[[${err}]]'<br>
             4 - '[[${#request.getAttribute("javax.servlet.forward.context_path")}]]'<br>
