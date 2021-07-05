@@ -22,15 +22,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotNull(message = "* Name may not be null........")
-    @Size(min=10, max=20, message = "* Size name 10-20")
-    @NotEmpty(message = "* Name may not be empty.")
+    @NotNull(message = "Name may not be null........")
+    @Size(min=10, max=20, message = "Size name 10-20")
+    @NotEmpty(message = "Name may not be empty.")
     @Column(nullable = false)
     private String username;
 
-    @NotNull(message = "* Name may not be null........")
-    @Size(min=3, max=10, message = "* Size passw 3-10")
-    @NotEmpty(message = "* Name may not be empty.")
+    @NotNull(message = "Name may not be null........")
+    @Size(min=3, max=10, message = "Size passw 3-10")
+    @NotEmpty(message = "Name may not be empty.")
     @Column(nullable = false)
     private String password;
 

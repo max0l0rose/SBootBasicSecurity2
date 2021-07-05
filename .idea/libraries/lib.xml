@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/sss4/WEB-INF/lib/attoparser-2.0.5.RELEASE.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/sss4/WEB-INF/lib/logback-classic-1.2.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/sss4/WEB-INF/lib/mysql-connector-java-8.0.22.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/sss4/WEB-INF/lib/logback-core-1.2.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/out/artifacts/sss4/WEB-INF/lib/unbescape-1.1.6.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
