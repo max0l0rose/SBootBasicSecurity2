@@ -1,5 +1,6 @@
 package rc.bootsecurity.Services;
 
+import javafx.scene.chart.ScatterChart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -84,8 +85,14 @@ public class UserService implements MyService<User>{
 
 
 	public Optional<User> findByName(String name) {
-		User u = userRepository.findByUsername(name);
-		return Optional.ofNullable(u);
+//		try {
+			User u = userRepository.findByUsername(name);
+			return Optional.ofNullable(u);
+//		}
+//		catch (Exception ex) {
+//			throw new Exception("qqq");
+//		}
+//		return Optional.empty();
 	}
 
 

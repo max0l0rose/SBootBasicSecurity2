@@ -13,8 +13,12 @@
             <div class="card-block bg-light" style="padding: 24px;">
                 <form name="f" th:action="@{/reg_process}" method="post" th:object="${user}">
 
-                    <div th:if="${#fields.hasErrors('*')}" class='my-3 error form-control bg-warning'>
-                        <div th:errors="*{all}" class='error'></div>
+<!--                    <div th:if="${#fields.hasErrors('*')}" class='my-3 error form-control bg-warning'>-->
+<!--                        <div th:errors="*{all}" class='error'></div>-->
+<!--                    </div>-->
+
+                    <div th:if="${#fields.hasErrors('global')}" class='my-3 error form-control bg-warning'>
+                        <div th:errors="*{global}" class='error'></div>
                     </div>
 
                     <fieldset>

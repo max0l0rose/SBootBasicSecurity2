@@ -1,6 +1,7 @@
 package rc.bootsecurity.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +24,9 @@ import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/")
-public class HomeController {
+public class HomeController
+//            implements ErrorController
+{
 
     @Autowired
     private UserService userService;
@@ -89,20 +92,22 @@ public class HomeController {
     }
 
 
-    @RequestMapping(value = "error", method = {RequestMethod.GET, RequestMethod.POST})
-    //@ExceptionHandler()
-    public void error(HttpServletRequest request
-                        //, HttpServletResponse resp
-                        //, @RequestHeader(name = "errorcode") String errorCode
-                        , Model model
-                        , RedirectAttributes ra
-                        )
-    {
-        model.addAttribute("err", "qqqqq");
-        ra.addFlashAttribute("err", "qqqqq");
-        //int err = (Integer) request.getAttribute("javax.servlet.error.status_code");
-        //return "/error1111";
-    }
+//    @RequestMapping(value = "error", method = {RequestMethod.GET}) //, RequestMethod.POST
+//    //@ExceptionHandler()
+//    public String error(HttpServletRequest request
+//                        //, HttpServletResponse resp
+//                        //, @RequestHeader(name = "errorcode") String errorCode
+//                        , Model model
+//                        , RedirectAttributes ra
+//                        )
+//    {
+//        System.out.println("HomeController: error " + System.identityHashCode(model));
+//
+//        model.addAttribute("err", "zzzzzzzzzzzzz");
+//        ra.addFlashAttribute("err", "xxxxxxxxxxxxxxx");
+//        int err = (Integer) request.getAttribute("javax.servlet.error.status_code");
+//        return "/error";
+//    }
 
 
     //@RequestMapping(value="/testredirect",method = { RequestMethod.POST, RequestMethod.GET })
