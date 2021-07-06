@@ -31,6 +31,9 @@
         </fileset>
         <fileset id="fileset" name="Web" removed="false">
           <file>file://$MODULE_DIR$/src/main/resources/web.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/rc/bootsecurity/security/WebSecurityConfigurer.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/rc/bootsecurity/security/WebMvcConfig.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/rc/bootsecurity/BootSecurityApplication.java</file>
         </fileset>
       </configuration>
     </facet>

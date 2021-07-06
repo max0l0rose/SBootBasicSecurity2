@@ -6,11 +6,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.DelegatingMessageSource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.web.context.support.XmlWebApplicationContext;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import rc.bootsecurity.controller.NumberProvider;
 
 import java.util.Locale;
 
@@ -18,6 +20,14 @@ import java.util.Locale;
 //@ComponentScan("demospringmvc")
 //@EnableWebMvc // -------------- Надо выключить чтобы работали статик ресурсы
 class WebMvcConfig implements WebMvcConfigurer {
+
+//	@Bean
+//	public MessageSource messageSource() {
+//		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+//		messageSource.setBasename("config/messages");
+//		return messageSource;
+//	}
+
 
 	@Bean
 	public LocaleResolver localeResolver() {
@@ -62,9 +72,8 @@ class WebMvcConfig implements WebMvcConfigurer {
 
 
 
-
 //	@Bean
-//	public NumberProvider qqq() {
+//	public NumberProvider numberProvider() {
 //		return new NumberProvider();
 //	}
 
