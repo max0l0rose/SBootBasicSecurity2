@@ -91,8 +91,9 @@ public class HomeController
         return "/login";
     }
 
-
+//
 //    @RequestMapping(value = "error", method = {RequestMethod.GET}) //, RequestMethod.POST
+//    @ResponseStatus(value= HttpStatus.SEE_OTHER, reason="IOException occured")
 //    //@ExceptionHandler()
 //    public String error(HttpServletRequest request
 //                        //, HttpServletResponse resp
