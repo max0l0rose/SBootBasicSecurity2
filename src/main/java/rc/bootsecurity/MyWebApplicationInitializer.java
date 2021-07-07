@@ -1,5 +1,7 @@
 package rc.bootsecurity;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.WebApplicationInitializer;
@@ -8,6 +10,16 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+
+//
+//class A implements ApplicationContextAware {
+//	private ApplicationContext context;
+//
+//	public void setApplicationContext(ApplicationContext context) {
+//		this.context = context;
+//	}
+//}
+
 
 @Configuration
 public class MyWebApplicationInitializer implements WebApplicationInitializer {
