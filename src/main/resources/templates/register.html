@@ -8,7 +8,7 @@
     <div style="width:600px;margin-left: auto;margin-right: auto;margin-top:24px;padding: 24px;">
         <div class="card">
             <div class="card-header">
-                <i class="fa fa-user"></i> [[#{register}]] '[[${@nprov}]]'
+                <i class="fa fa-user"></i> [[#{register}]] '[[${@nprov.getN()}]]'
             </div>
             <div class="card-block bg-light" style="padding: 24px;">
                 <form name="f" th:action="@{/reg_process}" method="post" th:object="${user}">

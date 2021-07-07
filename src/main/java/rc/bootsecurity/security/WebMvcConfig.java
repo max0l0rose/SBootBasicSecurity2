@@ -1,8 +1,10 @@
 package rc.bootsecurity.security;
 
 
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.DelegatingMessageSource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -19,14 +21,9 @@ import java.util.Locale;
 @Configuration
 //@ComponentScan("demospringmvc")
 //@EnableWebMvc // -------------- Надо выключить чтобы работали статик ресурсы
-class WebMvcConfig implements WebMvcConfigurer {
 
-//	@Bean
-//	public MessageSource messageSource() {
-//		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-//		messageSource.setBasename("config/messages");
-//		return messageSource;
-//	}
+//@ImportResource({"classpath:applicationContext.xml"})
+class WebMvcConfig implements WebMvcConfigurer {
 
 
 	@Bean
@@ -50,6 +47,14 @@ class WebMvcConfig implements WebMvcConfigurer {
 	}
 
 
+
+//	@Bean
+//	public MessageSource messageSource() {
+//		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+//		messageSource.setBasename("messages1");
+//		messageSource.setDefaultEncoding("UTF-8");
+//		return messageSource;
+//	}
 
 
 //	@Bean(name = "messageSource")
