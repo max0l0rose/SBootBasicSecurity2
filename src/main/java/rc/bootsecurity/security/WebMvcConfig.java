@@ -22,7 +22,7 @@ import java.util.Locale;
 //@ComponentScan("demospringmvc")
 //@EnableWebMvc // -------------- Надо выключить чтобы работали статик ресурсы
 
-//@ImportResource({"classpath:applicationContext.xml"})
+//@ImportResource({"classpath:dispatcher1-servlet.xml"})
 class WebMvcConfig implements WebMvcConfigurer {
 
 

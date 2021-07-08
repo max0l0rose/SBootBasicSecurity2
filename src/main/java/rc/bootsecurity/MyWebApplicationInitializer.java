@@ -29,7 +29,7 @@ import javax.servlet.ServletException;
 ////	@Bean
 ////	public XmlWebApplicationContext qqq(ServletContext container) {
 ////		XmlWebApplicationContext context = new XmlWebApplicationContext();
-////		context.setConfigLocation("applicationContext.xml");
+////		context.setConfigLocation("dispatcher1-servlet.xml");
 ////		return context;
 ////	}
 //
@@ -37,7 +37,7 @@ import javax.servlet.ServletException;
 ////	@Override
 ////	public void onStartup(ServletContext container) throws ServletException {
 ////		XmlWebApplicationContext context = new XmlWebApplicationContext();
-////		context.setConfigLocation("applicationContext.xml");
+////		context.setConfigLocation("dispatcher1-servlet.xml");
 ////		context.setServletContext(container);
 ////
 ////		System.out.println("--- MyWebApplicationInitializer ---");

@@ -94,7 +94,7 @@
       <element id="library" level="project" name="lib" />
       <element id="javaee-facet-resources" facet="Forms_SpringBootSecurity/web/Web" />
       <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-      <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/WEB-INF/applicationContext.xml" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/main/webapp/WEB-INF/dispatcher1-servlet.xml" />
       <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/messages1.properties" />
       <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/messages1_ru.properties" />
     </root>

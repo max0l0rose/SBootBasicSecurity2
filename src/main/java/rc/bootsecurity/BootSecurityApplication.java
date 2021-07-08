@@ -4,23 +4,51 @@ import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
 import org.apache.tomcat.util.descriptor.web.SecurityCollection;
 import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+import org.springframework.web.context.support.XmlWebApplicationContext;
+import rc.bootsecurity.controller.NumberProvider;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 
 @SpringBootApplication
-//@Configuration
+@Configuration
 public class BootSecurityApplication extends SpringBootServletInitializer
 {
+    @Autowired
+    private ApplicationContext applicationContext;
 
     public static void main(String[] args) {
         SpringApplication.run(BootSecurityApplication.class, args);
-        System.out.println("222222222222");
+        System.out.println("222222222222222222222222222222222222222222222");
     }
+
+
+    @Override
+    public void onStartup(ServletContext servletContext) throws ServletException {
+//        XmlWebApplicationContext context = new XmlWebApplicationContext();
+//        context.setConfigLocation("dispatcher1-servlet.xml");
+//        context.setServletContext(servletContext);
+
+        WebApplicationContext ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(
+                                                                                        servletContext);
+        NumberProvider someBean = (NumberProvider) ctx.getBean("nprov");
+
+
+        System.out.println("--- BootSecurityApplication ---");
+        //super.onStartup(servletContext);
+    }
+
 
 //    @Bean
 //    public ServletWebServerFactory servletContainer() {
