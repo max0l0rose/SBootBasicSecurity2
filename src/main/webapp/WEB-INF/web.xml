@@ -8,7 +8,7 @@
 
 <!--    <context-param>-->
 <!--        <param-name>contextConfigLocation</param-name>-->
-<!--        <param-value>/WEB-INF/dispatcher1-servlet.xml</param-value>-->
+<!--        <param-value>/WEB-INF/dispatcher-servlet.xml</param-value>-->
 <!--    </context-param>-->
 
 
@@ -23,12 +23,16 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>/WEB-INF/dispatcher1-servlet.xml</param-value>
+            <param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -38,8 +42,40 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
+
+<!--    <session-config>-->
+<!--        <session-timeout>-->
+<!--            30-->
+<!--        </session-timeout>-->
+<!--    </session-config>-->
+<!--    <jsp-config>-->
+<!--        <jsp-property-group>-->
+<!--            <description>header and footer settings</description>-->
+<!--            <url-pattern>/WEB-INF/views/*</url-pattern>-->
+<!--            <url-pattern>/index.jsp</url-pattern>-->
+<!--            <include-prelude>/WEB-INF/jspf/header.jsp</include-prelude>-->
+<!--            <include-coda>/WEB-INF/jspf/footer.jsp</include-coda>-->
+<!--        </jsp-property-group>-->
+<!--    </jsp-config>-->
+
+
+
+<!--    XML Configuration-->
+<!--    Another way to configure and register servlets within Spring Boot is through web.xml:-->
+
+<!--    <servlet>-->
+<!--        <servlet-name>dispatcher</servlet-name>-->
+<!--        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
+<!--        <init-param>-->
+<!--            <param-name>contextConfigLocation</param-name>-->
+<!--            <param-value>/WEB-INF/spring/dispatcher.xml</param-value>-->
+<!--        </init-param>-->
+<!--        <load-on-startup>1</load-on-startup>-->
+<!--    </servlet>-->
+
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>dispatcher</servlet-name>-->
+<!--        <url-pattern>/</url-pattern>-->
+<!--    </servlet-mapping>-->
 
 </web-app>

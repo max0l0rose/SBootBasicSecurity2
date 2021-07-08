@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
     <bean name="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
         <property name="basename">
@@ -17,5 +18,18 @@
 <!--            <value>classpath:/messages1</value>-->
 <!--        </property>-->
     </bean>
+
+
+<!--    <http auto-config="true">-->
+<!--        <intercept-url pattern="/*" access="ROLE_USER" />-->
+<!--    </http>-->
+
+<!--    <authentication-manager alias="authenticationManager">-->
+<!--        <authentication-provider>-->
+<!--            <user-service>-->
+<!--                <user authorities="ROLE_USER" name="guest" password="guest" />-->
+<!--            </user-service>-->
+<!--        </authentication-provider>-->
+<!--    </authentication-manager>-->
 
 </beans>

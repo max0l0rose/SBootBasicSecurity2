@@ -37,7 +37,7 @@ public class BootSecurityApplication extends SpringBootServletInitializer
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
 //        XmlWebApplicationContext context = new XmlWebApplicationContext();
-//        context.setConfigLocation("dispatcher1-servlet.xml");
+//        context.setConfigLocation("dispatcher-servlet.xml");
 //        context.setServletContext(servletContext);
 
         WebApplicationContext ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(

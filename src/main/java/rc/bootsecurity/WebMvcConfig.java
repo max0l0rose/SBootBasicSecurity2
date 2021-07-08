@@ -1,4 +1,4 @@
-package rc.bootsecurity.security;
+package rc.bootsecurity;
 
 
 import org.springframework.context.MessageSource;
@@ -22,7 +22,7 @@ import java.util.Locale;
 //@ComponentScan("demospringmvc")
 //@EnableWebMvc // -------------- Надо выключить чтобы работали статик ресурсы
 
-//@ImportResource({"classpath:dispatcher1-servlet.xml"})
+//@ImportResource({"classpath:dispatcher-servlet.xml"})
 class WebMvcConfig implements WebMvcConfigurer {
 
 
