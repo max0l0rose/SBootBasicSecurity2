@@ -3,7 +3,7 @@ package rc.bootsecurity.controller;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
-@Component("NumberProvider")
+//@Component("NumberProvider")
 //@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 //@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
 @SessionScope

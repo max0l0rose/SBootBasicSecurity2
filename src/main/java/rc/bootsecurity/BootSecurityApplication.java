@@ -5,6 +5,7 @@ import org.apache.catalina.connector.Connector;
 import org.apache.tomcat.util.descriptor.web.SecurityCollection;
 import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
@@ -20,6 +21,7 @@ import rc.bootsecurity.controller.NumberProvider;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import java.util.Arrays;
 
 @SpringBootApplication
 @Configuration
@@ -27,6 +29,23 @@ public class BootSecurityApplication extends SpringBootServletInitializer
 {
     @Autowired
     private ApplicationContext applicationContext;
+
+    @Bean
+    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
+        return args -> {
+
+            NumberProvider someBean = (NumberProvider) ctx.getBean("nprov");
+
+            System.out.println("Let's inspect the beans provided by Spring Boot:");
+
+            String[] beanNames = ctx.getBeanDefinitionNames();
+            Arrays.sort(beanNames);
+            for (String beanName : beanNames) {
+                System.out.println(beanName);
+            }
+
+        };
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(BootSecurityApplication.class, args);
