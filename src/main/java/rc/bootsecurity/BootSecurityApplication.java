@@ -27,25 +27,25 @@ import java.util.Arrays;
 @Configuration
 public class BootSecurityApplication extends SpringBootServletInitializer
 {
-    @Autowired
-    private ApplicationContext applicationContext;
+//    @Autowired
+//    private ApplicationContext applicationContext;
 
-    @Bean
-    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
-        return args -> {
-
-            NumberProvider someBean = (NumberProvider) ctx.getBean("nprov");
-
-            System.out.println("Let's inspect the beans provided by Spring Boot:");
-
-            String[] beanNames = ctx.getBeanDefinitionNames();
-            Arrays.sort(beanNames);
-            for (String beanName : beanNames) {
-                System.out.println(beanName);
-            }
-
-        };
-    }
+//    @Bean
+//    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
+//        return args -> {
+//
+//            //NumberProvider someBean = (NumberProvider) ctx.getBean("nprov");
+//
+//            System.out.println("Let's inspect the beans provided by Spring Boot:");
+//
+//            String[] beanNames = ctx.getBeanDefinitionNames();
+//            Arrays.sort(beanNames);
+//            for (String beanName : beanNames) {
+//                System.out.println(beanName);
+//            }
+//
+//        };
+//    }
 
     public static void main(String[] args) {
         SpringApplication.run(BootSecurityApplication.class, args);
@@ -59,9 +59,8 @@ public class BootSecurityApplication extends SpringBootServletInitializer
 //        context.setConfigLocation("dispatcher-servlet.xml");
 //        context.setServletContext(servletContext);
 
-        WebApplicationContext ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(
-                                                                                        servletContext);
-        NumberProvider someBean = (NumberProvider) ctx.getBean("nprov");
+        //WebApplicationContext ctx = WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
+        //NumberProvider someBean = (NumberProvider) ctx.getBean("nprov");
 
 
         System.out.println("--- BootSecurityApplication ---");
