@@ -1,7 +1,6 @@
 package rc.bootsecurity.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +16,6 @@ import rc.bootsecurity.Services.UserService;
 import rc.bootsecurity.model.User;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import javax.validation.Valid;
 
@@ -45,28 +42,31 @@ public class HomeController
 
 
     @GetMapping("register")
-    public String register(Model model) {
-        model.addAttribute("user", new User());
+    public String register(@ModelAttribute("user") User user) {
+        //model.addAttribute("user", new User());
         return "/register";
     }
 
 
     @PostMapping("reg_process")
     public String reg_process(//, HttpServletRequest request
-                              Model model,
+                              //Model model,
                               //HttpServletRequest httpServletRequest,
                               RedirectAttributes redirectAttributes,
                               //HttpSession session,
-                              @Valid User user, BindingResult bindingResult
-    ) {
+                              @Valid User user,
+                              BindingResult bindingResult
+                                                            )
+    {
         redirectAttributes.addFlashAttribute("user", user);
         if(bindingResult.hasErrors()) {
             return "/register";
         }
 
         if (userService.findByName(user.getUsername()).isPresent()) {
-            ObjectError err = new ObjectError("username", "User exists!");
+            ObjectError err = new ObjectError("username", "User exists!!!!");
             bindingResult.addError(err);
+            bindingResult.rejectValue("username", "register.userExists", "An account already exists for this email.");
             return "/register";
         }
 
@@ -84,10 +84,10 @@ public class HomeController
 
     //@GetMapping("login")
     @RequestMapping(value = "login", method = {RequestMethod.GET, RequestMethod.POST})
-    public String login(Model model) {
-        if (!model.containsAttribute("user")) {
-            model.addAttribute("user", new User());
-        }
+    public String login(@ModelAttribute("user") User user) {
+//        if (!model.containsAttribute("user")) {
+//            model.addAttribute("user", new User());
+//        }
         return "/login";
     }
 
