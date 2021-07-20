@@ -63,6 +63,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return user.get().getActive() == 1;
+        int act = user.get().getActive();
+        return act == 1;
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -25,12 +26,23 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
+
+//    @Bean
+//    public SimpleUrlAuthenticationFailureHandler authenticationFailureHandler() {
+//        SimpleUrlAuthenticationFailureHandler failureHandler =
+//                new SimpleUrlAuthenticationFailureHandler();
+//        failureHandler.setUseForward(true);
+//        failureHandler.setDefaultFailureUrl("/");
+//        return failureHandler;
+//    }
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/index.html", "/reg_process").permitAll()
+                .antMatchers("/index.html").permitAll()
                 .antMatchers("/profile/**").authenticated()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/management/**").hasAnyRole("ADMIN", "MANAGER")
@@ -39,6 +51,10 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/public/users").hasRole("ADMIN")
                 .and()
                 .formLogin()
+                    .failureHandler(new SimpleUrlAuthenticationFailureHandler() {{
+                                                setUseForward(true);
+                                                setDefaultFailureUrl("/login?error");
+                                    }})
                     .loginProcessingUrl("/signin")
                     .loginPage("/login")
                         .permitAll()

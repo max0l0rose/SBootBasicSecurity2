@@ -10,6 +10,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.jws.WebParam;
 
+
+//TODO 3 Надо изучить:
+//        InitBinder
+//        Redirect, Forward vs ничего...
+//        binder.addCustomFormatter, binder.registerCustomEditor
+
+
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -36,6 +43,6 @@ public class GlobalExceptionHandler {
         //model.addAttribute("exception", ex);
         model.addAttribute("err", "ffffffffffffff");
 
-        return "error2";
+        return "error";
     }
 }

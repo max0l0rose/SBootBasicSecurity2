@@ -64,9 +64,10 @@ public class HomeController
         }
 
         if (userService.findByName(user.getUsername()).isPresent()) {
-            ObjectError err = new ObjectError("username", "User exists!!!!");
-            bindingResult.addError(err);
-            bindingResult.rejectValue("username", "register.userExists", "An account already exists for this email.");
+            //ObjectError err = new ObjectError("username", "User exists!!!!");
+            //bindingResult.addError(err);
+            bindingResult.reject("username1", new Object[]{"aaaa"}, "An account already exists for this email...");
+            bindingResult.rejectValue("username", "register.userExists", "already exists");
             return "/register";
         }
 
@@ -82,16 +83,39 @@ public class HomeController
     }
 
 
+
+
+
     //@GetMapping("login")
     @RequestMapping(value = "login", method = {RequestMethod.GET, RequestMethod.POST})
-    public String login(@ModelAttribute("user") User user) {
+    public String login( User user) {
 //        if (!model.containsAttribute("user")) {
 //            model.addAttribute("user", new User());
 //        }
         return "/login";
     }
 
-//
+    //@RequestMapping(value="/testredirect",method = { RequestMethod.POST, RequestMethod.GET })
+    @PostMapping("mysignin")
+    public String signin(//RedirectAttributes ra
+                         HttpServletRequest request
+                        , RedirectAttributes redirectAttributes
+                        , @Valid User user
+                        , BindingResult bindingResult
+                        ) {
+        redirectAttributes.addFlashAttribute("user", user);
+        //redirectAttributes.addAttribute("user", user);
+        if(bindingResult.hasErrors()) {
+            return "/login";
+        }
+        request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
+        request.setAttribute("user", user);
+        return "redirect:/signin";//signin";
+    }
+
+
+
+    //
 //    @RequestMapping(value = "error", method = {RequestMethod.GET}) //, RequestMethod.POST
 //    @ResponseStatus(value= HttpStatus.SEE_OTHER, reason="IOException occured")
 //    //@ExceptionHandler()
@@ -110,22 +134,6 @@ public class HomeController
 //        return "/error";
 //    }
 
-
-    //@RequestMapping(value="/testredirect",method = { RequestMethod.POST, RequestMethod.GET })
-    @PostMapping("mysignin")
-    public String signin(//RedirectAttributes ra
-                         HttpServletRequest request
-                        , RedirectAttributes redirectAttributes
-                        , @Valid User user
-                        , BindingResult bindingResult
-                        ) {
-        redirectAttributes.addFlashAttribute("user", user);
-        if(bindingResult.hasErrors()) {
-            return "/login";
-        }
-        request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
-        return "redirect:/signin";//signin";
-    }
 
 
     @PostMapping("mylogout")
