@@ -4,15 +4,19 @@ import javafx.scene.chart.ScatterChart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import rc.bootsecurity.db.UserRepository;
 import rc.bootsecurity.model.User;
 
+import javax.transaction.Transactional;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 
 @Component
-public class UserService implements MyService<User>{
+public class UserService implements MyService<User> {
 //	private final static String URL = "jdbc:mysql://localhost:3306/db1";
 //	private final static String USERNAME = "root";
 //	private final static String PWD = "q12345";
@@ -21,6 +25,8 @@ public class UserService implements MyService<User>{
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 ////	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 ////	static final String JDBC_DB_URL = "jdbc:mysql://localhost:3306/tutorialDb";
@@ -96,7 +102,15 @@ public class UserService implements MyService<User>{
 	}
 
 
+	//@Transactional
 	public User save(User user) {
+
+		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+//		Set<Role> roles = new HashSet<>();
+//		roles.add(roleDao.getOne(1L));
+//		user.setRoles(roles);
+		//userRepository.save(user);
+
 		return userRepository.save(user);
 	}
 
@@ -107,6 +121,12 @@ public class UserService implements MyService<User>{
 	}
 
 }
+
+
+
+
+
+
 
 
 //

@@ -1,5 +1,6 @@
 package rc.bootsecurity.controller;
 
+import com.sun.org.apache.xml.internal.serialize.LineSeparator;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -7,8 +8,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.thymeleaf.util.StringUtils;
 
 import javax.jws.WebParam;
+import java.util.ArrayList;
 
 
 //TODO 3 Надо изучить:
@@ -31,7 +34,7 @@ public class GlobalExceptionHandler {
     // creates model attrs: 'status' and 'error' !!!!!!!!!!!!
     //@ResponseStatus(value = HttpStatus.CONFLICT, reason="IOException occured.....") // затирает модель!!!!!!!
     @ExceptionHandler(Exception.class) //IOException.class
-    public String handle1(@ModelAttribute("exception") Exception ex
+    public String handle1(@ModelAttribute("exception") Exception exception
                           //, RedirectAttributes redirectAttributes
                             ,Model model
     ) {
@@ -41,7 +44,17 @@ public class GlobalExceptionHandler {
 
         //redirectAttributes.addFlashAttribute("exception", ex);
         //model.addAttribute("exception", ex);
-        model.addAttribute("err", "ffffffffffffff");
+        ArrayList<String> arr = new ArrayList<>();
+        String s = "";
+        Throwable ex = exception;
+        while (ex != null) {
+            if (!StringUtils.equals(s, ex.getMessage())) {
+                s = ex.getMessage();
+                ex = ex.getCause();
+                arr.add(s);
+            }
+        }
+        model.addAttribute("err", arr);
 
         return "error";
     }

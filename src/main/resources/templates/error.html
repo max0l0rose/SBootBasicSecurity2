@@ -11,6 +11,14 @@
         javax.servlet.error.message:
         <h4 class=""> '[[${#request.getAttribute("javax.servlet.error.message")}]]'</h4>
         <p class="lead">
+
+            <div th:if="${err != null}">
+                Errors:
+                <ul th:each="a : ${err}">
+                    <li th:text="${a}"></li>
+                </ul>
+            </div><br>
+
             1 - '[[${param.size()}]]'<br>
 
             <div th:if="${param.size()>0}">
@@ -21,7 +29,7 @@
             </div>
 
             2 - '[[${param[0]}]]'<br>
-            3 - '[[${err}]]'<br>
+            3 - '[[${err}]]'<br><br>
             4 - '[[${#request.getAttribute("javax.servlet.forward.context_path")}]]'<br>
             5 - '[[${#request.getAttribute("javax.servlet.error.request_uri")}]]'<br>
             6 - '[[${#model}]]'<br>

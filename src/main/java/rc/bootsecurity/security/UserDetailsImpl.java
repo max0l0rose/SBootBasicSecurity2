@@ -10,6 +10,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+
+
 public class UserDetailsImpl implements UserDetails {
     private Optional<User> user;
 

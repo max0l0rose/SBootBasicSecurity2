@@ -29,7 +29,7 @@ public class User {
     private String username;
 
     @NotNull(message = "Name may not be null........")
-    @Size(min=3, max=10, message = "Size passw 3-10")
+    @Size(min=3, max=80, message = "Size passw 3-80")
     @NotEmpty(message = "Name may not be empty.")
     @Column(nullable = false)
     private String password;

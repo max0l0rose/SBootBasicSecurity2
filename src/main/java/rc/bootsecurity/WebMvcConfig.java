@@ -8,7 +8,9 @@ import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.support.DelegatingMessageSource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.context.support.XmlWebApplicationContext;
+import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -16,9 +18,11 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import rc.bootsecurity.controller.NumberProvider;
 
+import java.util.List;
 import java.util.Locale;
 
 @Configuration
+@EnableJpaRepositories
 //@ComponentScan("demospringmvc")
 //@EnableWebMvc // -------------- Надо выключить чтобы работали статик ресурсы
 
@@ -46,6 +50,16 @@ class WebMvcConfig implements WebMvcConfigurer {
 		registry.addInterceptor(localeChangeInterceptor());
 	}
 
+
+//	@Override
+//	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+//		argumentResolvers.add(new SpecificationArgumentResolver());
+//	}
+
+
+//	@Bean public HandlerMethodArgumentResolver specificationArgumentResolver() {
+//		return new SpecificationArgumentResolver();
+//	}
 
 
 	@Bean
