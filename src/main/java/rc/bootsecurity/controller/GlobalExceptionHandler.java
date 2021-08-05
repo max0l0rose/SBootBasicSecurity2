@@ -1,6 +1,7 @@
 package rc.bootsecurity.controller;
 
 import com.sun.org.apache.xml.internal.serialize.LineSeparator;
+import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -36,9 +37,9 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class) //IOException.class
     public String handle1(@ModelAttribute("exception") Exception exception
                           //, RedirectAttributes redirectAttributes
-                            ,Model model
+                            , Model model
+                          //, ErrorAttributes errorAttributes //https://stackoverflow.com/questions/41424130/handle-org-thymeleaf-exceptions-templateinputexception
     ) {
-        int a = 1;
         //logger.error("IOException handler executed");
         //returning 404 error code
 

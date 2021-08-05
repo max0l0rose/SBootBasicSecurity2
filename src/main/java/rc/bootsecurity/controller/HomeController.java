@@ -3,8 +3,11 @@ package rc.bootsecurity.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -18,8 +21,11 @@ import org.springframework.web.servlet.view.RedirectView;
 import rc.bootsecurity.Services.UserService;
 import rc.bootsecurity.model.User;
 
+import javax.jws.WebParam;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -31,7 +37,7 @@ public class HomeController
     private UserService userService;
 
 
-    @GetMapping(value = {"/", "index"})
+    @RequestMapping(value = {"/", "index"}, method = {RequestMethod.GET}) //, RequestMethod.POST
     public String index(ModelMap model
 //            , @RequestHeader(name = "errorcode") String h1
 //            , @RequestHeader(name = "Content-Type") String h2
@@ -52,9 +58,9 @@ public class HomeController
 
 
     @PostMapping("reg_process")
-    public String reg_process(//, HttpServletRequest request
-                              //Model model,
-                              //HttpServletRequest httpServletRequest,
+    public String reg_process(ServletRequest request,
+                              Model model,
+                              HttpServletRequest httpServletRequest,
                               RedirectAttributes redirectAttributes,
                               //HttpSession session,
                               @Valid User user,
@@ -77,14 +83,15 @@ public class HomeController
 
         // TODO: add to DB
         //user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userService.save(user);
+        User user2 = userService.save(user);
+        //user.setPassword("");
 
-        //model.addAttribute("message", "Success. Person: " + user.getUsername());
-        redirectAttributes.addAttribute("regsuccess", "1");
-        redirectAttributes.addAttribute("message", user.getUsername());
+        redirectAttributes.addAttribute("regsuccess", 1);
+        //redirectAttributes.addAttribute("message", user2.getUsername());
+        redirectAttributes.addFlashAttribute("user", user);
 
         //request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
-        return "redirect:/login";
+        return "redirect:/login?www=eeee";
     }
 
 
@@ -92,31 +99,42 @@ public class HomeController
 
 
     //@GetMapping("login")
-    @RequestMapping(value = "login", method = {RequestMethod.GET, RequestMethod.POST})
-    public String login( User user) {
+    @RequestMapping(value = "login", method = {RequestMethod.GET, RequestMethod.POST}) //
+    public String login(@ModelAttribute User user
+                        , HttpServletRequest httpServletRequest
+                        //, ServletRequest request
+                         , RedirectAttributes redirectAttributes
+                        , Model model
+    ) {
 //        if (!model.containsAttribute("user")) {
 //            model.addAttribute("user", new User());
 //        }
+
+        // works
+        //Exception ex2 = (Exception) httpServletRequest.getAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
+
         return "/login";
     }
 
     //@RequestMapping(value="/testredirect",method = { RequestMethod.POST, RequestMethod.GET })
     @PostMapping("mysignin")
-    public String signin(//RedirectAttributes redirectAttributes,
-                         HttpServletRequest request
-                        //, RedirectAttributes redirectAttributes
+    public String mysignin(//Model model,
+                           HttpServletRequest request
+                           //, RedirectAttributes redirectAttributes
                         , @Valid User user
                         , BindingResult bindingResult
                         ) {
-        //redirectAttributes.addFlashAttribute("user", user);
-        //redirectAttributes.addAttribute("user", user);
         if(bindingResult.hasErrors()) {
             return "/login";
         }
         request.setAttribute(View.RESPONSE_STATUS_ATTRIBUTE, HttpStatus.TEMPORARY_REDIRECT);
-        request.setAttribute("user", user);
+        //model.addAttribute("user", user);
+
+        //redirectAttributes.addFlashAttribute("user", user);
         //redirectAttributes.addAttribute("user", user);
-        return "redirect:/signin";//signin";
+        // same as:
+        request.setAttribute("user", user);
+        return "redirect:/signin";//redirect:/signin";
     }
 
 

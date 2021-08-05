@@ -27,7 +27,7 @@
                     <a class="nav-link" href="#" th:href="@{/index}"><i class="fa fa-home"></i>Home</a>
                 </li>
                 <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/profile/index}">Profile</a>
+                    <a class="nav-link" href="#" th:href="@{/profile}">Profile</a>
                 </li>
                 <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
                     <a class="nav-link" href="#" th:href="@{/admin/index}">Admin</a>

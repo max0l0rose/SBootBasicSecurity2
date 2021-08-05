@@ -8,7 +8,7 @@
     <div style="width:600px;margin-left: auto;margin-right: auto;margin-top:24px;padding: 24px;">
         <div class="card">
             <div class="card-header">
-                <i class="fa fa-user"></i> Please Login
+                <i class="fa fa-user"></i> thml:Please Login
             </div>
             <div class="card-block" style="padding: 24px;">
                 <form name="f" th:action="@{/mysignin}" method="post" th:object="${user}">
@@ -24,7 +24,7 @@
                     <fieldset>
                         <!-- Thymeleaf + Spring Security error display -->
                         <div th:if="${param.error}" class="alert alert-danger">
-                            Invalid username and password.
+                            html:Invalid username and password. SPRING_SECURITY_LAST_EXCEPTION='[[${SPRING_SECURITY_LAST_EXCEPTION.message}]]'
                         </div>
 
 <!--                        <p>param.logout = [[${param.logout}]]</p>-->
@@ -33,7 +33,7 @@
                         </div>
 
                         <div th:if="${param.regsuccess}" class="alert alert-warning">
-                            '[[${message}]]' [[#{register.success}]]
+                            '[[*{username}]]' [[#{register.success}]].
                         </div>
 
                         <!-- Login Controls -->

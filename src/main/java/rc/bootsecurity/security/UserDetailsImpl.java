@@ -23,6 +23,8 @@ public class UserDetailsImpl implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
 
+        // TODO сделать ENUM Role и унаследовать его от GrantedAuthority
+
         // Extract list of permissions (name)
         user.get().getPermissionList().forEach(p -> {
             GrantedAuthority authority = new SimpleGrantedAuthority(p);

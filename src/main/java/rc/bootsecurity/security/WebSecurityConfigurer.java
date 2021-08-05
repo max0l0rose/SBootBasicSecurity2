@@ -13,36 +13,36 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
-//@EnableWebSecurity
+@EnableWebSecurity
 //@EnableSpringDataWebSupport
-public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter
+{
+//    private UserDetailsServiceImpl userDetailsService;
+//
+//
+//    public WebSecurityConfigurer(UserDetailsServiceImpl userDetailsService) {
+//        this.userDetailsService = userDetailsService;
+//    }
+//
+//
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) {
+//        auth.authenticationProvider(authenticationProvider());
+//        //auth.encoder
+//    }
 
-    private UserDetailsServiceImpl userDetailsService;
 
-
-    public WebSecurityConfigurer(UserDetailsServiceImpl userDetailsService) {
-        this.userDetailsService = userDetailsService;
-    }
-
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) {
-        //auth.authenticationProvider(authenticationProvider()).pass
-        auth.enc
-    }
-
-
-    @Bean
-    //@Autowired UserDetailsServiceImpl userDetailsService
-    DaoAuthenticationProvider authenticationProvider(
-            //UserDetailsServiceImpl userDetailsService
-    ) {
-        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
-        //daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
-        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
-
-        return daoAuthenticationProvider;
-    }
+//    @Bean
+//    //@Autowired UserDetailsServiceImpl userDetailsService
+//    DaoAuthenticationProvider authenticationProvider(
+//            //UserDetailsServiceImpl userDetailsService
+//    ) {
+//        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+//        daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
+//        daoAuthenticationProvider.setUserDetailsService(userDetailsService);
+//
+//        return daoAuthenticationProvider;
+//    }
 
 
     @Bean
@@ -77,11 +77,13 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/public/users").hasRole("ADMIN")
                 .and()
                 .formLogin()
-                    .failureHandler(new SimpleUrlAuthenticationFailureHandler() {{
-                                                setUseForward(true);
-                                                setDefaultFailureUrl("/login?error");
-                                    }})
+//                    .failureHandler(new SimpleUrlAuthenticationFailureHandler() {{
+//                                                //setUseForward(true);
+//                                                setDefaultFailureUrl("/login?error");
+//                                    }})
+                    .failureForwardUrl("/login?error&login_error=1")
                     .loginProcessingUrl("/signin")
+                        //.permitAll()
                     .loginPage("/login")
                         .permitAll()
                     .usernameParameter("username")
