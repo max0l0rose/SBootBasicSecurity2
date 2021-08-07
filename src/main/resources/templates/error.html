@@ -7,9 +7,9 @@
 <div class="container">
     <div class="jumbotron bg-warning">
         Error page: javax.servlet.error.status_code:
-        <h1 class="display-4">[[${#request.getAttribute("javax.servlet.error.status_code")}]] status='[[${status}]]' error='[[${error}]]'</h1>
+        <h2 class="display-4">[[${#request.getAttribute("javax.servlet.error.status_code")}]] status='[[${status}]]' error='[[${error}]]'</h2>
         javax.servlet.error.message:
-        <h4 class=""> '[[${#request.getAttribute("javax.servlet.error.message")}]]'</h4>
+        <h3 class="">'[[${#request.getAttribute("javax.servlet.error.message")}]]'</h3>
         <p class="lead">
 
             <div th:if="${err != null}">
@@ -29,18 +29,18 @@
             </div>
 
             param[0] - '[[${param[0]}]]'<br>
-        err - '[[${err}]]'<br><br>
-        javax.servlet.forward.context_path - '[[${#request.getAttribute("javax.servlet.forward.context_path")}]]'<br>
-        javax.servlet.error.request_uri - '[[${#request.getAttribute("javax.servlet.error.request_uri")}]]'<br>
-        #model - '[[${#model}]]'<br>
-        #response - '[[${#response}]]'<br>
-        #servletContext - '[[${#servletContext}]]'<br>
-        exception - '[[${exception}]]'<br>
-        status - '[[${status}]]'<br>
-        error - '[[${error}]]'<br>
-        reason - '[[${reason}]]'<br>
-        @environment.getProperty("spring.jpa.hibernate.ddl-auto") - '[[${@environment.getProperty("spring.jpa.hibernate.ddl-auto")}]]'<br>
-        register.header - '[[#{register.header}]]'
+            err - '[[${err}]]'<br><br>
+            javax.servlet.forward.context_path - '[[${#request.getAttribute("javax.servlet.forward.context_path")}]]'<br>
+            javax.servlet.error.request_uri - '[[${#request.getAttribute("javax.servlet.error.request_uri")}]]'<br>
+            #model - '[[${#model}]]'<br>
+            #response - '[[${#response}]]'<br>
+            #servletContext - '[[${#servletContext}]]'<br>
+            exception - '[[${exception}]]'<br>
+            status - '[[${status}]]'<br>
+            error - '[[${error}]]'<br>
+            reason - '[[${reason}]]'<br>
+            @environment.getProperty("spring.jpa.hibernate.ddl-auto") - '[[${@environment.getProperty("spring.jpa.hibernate.ddl-auto")}]]'<br>
+            register.header - '[[#{register.header}]]'
         </p>
 
         <hr class="my-4">

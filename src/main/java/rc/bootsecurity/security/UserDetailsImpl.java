@@ -3,13 +3,10 @@ package rc.bootsecurity.security;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import rc.bootsecurity.model.Role;
 import rc.bootsecurity.model.User;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
-
+import java.util.*;
 
 
 public class UserDetailsImpl implements UserDetails {
@@ -25,19 +22,22 @@ public class UserDetailsImpl implements UserDetails {
 
         // TODO сделать ENUM Role и унаследовать его от GrantedAuthority
 
-        // Extract list of permissions (name)
-        user.get().getPermissionList().forEach(p -> {
-            GrantedAuthority authority = new SimpleGrantedAuthority(p);
-            authorities.add(authority);
-        });
+//        // Extract list of permissions (name)
+//        user.get().getPermissionList().forEach(p -> {
+//            GrantedAuthority authority = new SimpleGrantedAuthority(p);
+//            authorities.add(authority);
+//        });
 
         // Extract list of roles (ROLE_name)
-        user.get().getRoleList().forEach(r -> {
-            GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + r);
-            authorities.add(authority);
-        });
-
-        return authorities;
+        Set<Role> set = user.get().getRoles();
+        return set;
+//        set.forEach(r -> {
+//                //GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + r);
+//                //r.setAuthority("ROLE_" + r.getName());
+//                authorities.add(r);
+//            });
+//
+//        return authorities;
     }
 
     @Override
