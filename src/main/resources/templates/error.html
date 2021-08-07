@@ -19,7 +19,7 @@
                 </ul>
             </div><br>
 
-            1 - '[[${param.size()}]]'<br>
+            param.size() - '[[${param.size()}]]'<br>
 
             <div th:if="${param.size()>0}">
                 Params:
@@ -28,19 +28,19 @@
                 </ul>
             </div>
 
-            2 - '[[${param[0]}]]'<br>
-            3 - '[[${err}]]'<br><br>
-            4 - '[[${#request.getAttribute("javax.servlet.forward.context_path")}]]'<br>
-            5 - '[[${#request.getAttribute("javax.servlet.error.request_uri")}]]'<br>
-            6 - '[[${#model}]]'<br>
-            7 - '[[${#response}]]'<br>
-            8 - '[[${#servletContext}]]'<br>
-            9 - '[[${exception}]]'<br>
-            10 - '[[${status}]]'<br>
-            11 - '[[${error}]]'<br>
-            12 - '[[${reason}]]'<br>
-            13 - '[[${@environment.getProperty("spring.jpa.hibernate.ddl-auto")}]]'
-            14 - '[[#{register.header}]]'
+            param[0] - '[[${param[0]}]]'<br>
+        err - '[[${err}]]'<br><br>
+        javax.servlet.forward.context_path - '[[${#request.getAttribute("javax.servlet.forward.context_path")}]]'<br>
+        javax.servlet.error.request_uri - '[[${#request.getAttribute("javax.servlet.error.request_uri")}]]'<br>
+        #model - '[[${#model}]]'<br>
+        #response - '[[${#response}]]'<br>
+        #servletContext - '[[${#servletContext}]]'<br>
+        exception - '[[${exception}]]'<br>
+        status - '[[${status}]]'<br>
+        error - '[[${error}]]'<br>
+        reason - '[[${reason}]]'<br>
+        @environment.getProperty("spring.jpa.hibernate.ddl-auto") - '[[${@environment.getProperty("spring.jpa.hibernate.ddl-auto")}]]'<br>
+        register.header - '[[#{register.header}]]'
         </p>
 
         <hr class="my-4">

@@ -44,6 +44,12 @@
                 </li>
             </ul>
         </div>
+
+        <span sec:authorize="isAuthenticated()" class="mr-3">
+            <span sec:authentication="name" class="mr-1"></span>
+            <span sec:authentication="principal.authorities"></span>
+        </span>
+
         <a class="nav-link" href="#" sec:authorize="isAnonymous()" th:href="@{/register}">Register | </a>
         <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
             <button sec:authorize="isAuthenticated()"

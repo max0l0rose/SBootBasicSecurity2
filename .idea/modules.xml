@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Forms_springboot-security.iml" filepath="$PROJECT_DIR$/Forms_springboot-security.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Forms_sboot-basic-security2.iml" filepath="$PROJECT_DIR$/Forms_sboot-basic-security2.iml" />
     </modules>
   </component>
 </project>

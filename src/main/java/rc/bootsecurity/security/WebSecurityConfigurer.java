@@ -81,7 +81,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter
 //                                                //setUseForward(true);
 //                                                setDefaultFailureUrl("/login?error");
 //                                    }})
-                    .failureForwardUrl("/login?error&login_error=1")
+                    .failureForwardUrl("/login?error")
                     .loginProcessingUrl("/signin")
                         //.permitAll()
                     .loginPage("/login")

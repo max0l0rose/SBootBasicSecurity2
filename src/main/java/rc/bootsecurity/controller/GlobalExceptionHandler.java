@@ -15,10 +15,7 @@ import javax.jws.WebParam;
 import java.util.ArrayList;
 
 
-//TODO 3 Надо изучить:
-//        InitBinder
-//        Redirect, Forward vs ничего...
-//        binder.addCustomFormatter, binder.registerCustomEditor
+//TODO Надо изучить:   InitBinder    binder.addCustomFormatter, binder.registerCustomEditor
 
 
 @ControllerAdvice

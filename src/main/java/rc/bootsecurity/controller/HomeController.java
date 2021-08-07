@@ -57,6 +57,12 @@ public class HomeController
     }
 
 
+    @GetMapping("redir")
+    public String register() {
+        return "redirect:/management/index";
+    }
+
+
     @PostMapping("reg_process")
     public String reg_process(ServletRequest request,
                               Model model,
