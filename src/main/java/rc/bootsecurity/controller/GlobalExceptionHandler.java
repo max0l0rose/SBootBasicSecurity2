@@ -4,10 +4,7 @@ import com.sun.org.apache.xml.internal.serialize.LineSeparator;
 import org.springframework.boot.web.servlet.error.ErrorAttributes;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.thymeleaf.util.StringUtils;
 
@@ -31,6 +28,7 @@ public class GlobalExceptionHandler {
 
     // creates model attrs: 'status' and 'error' !!!!!!!!!!!!
     //@ResponseStatus(value = HttpStatus.CONFLICT, reason="IOException occured.....") // затирает модель!!!!!!!
+    @GetMapping("error")
     @ExceptionHandler(Exception.class) //IOException.class
     public String handle1(@ModelAttribute("exception") Exception exception
                           //, RedirectAttributes redirectAttributes

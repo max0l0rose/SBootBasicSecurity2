@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -17,6 +18,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 //@EnableSpringDataWebSupport
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter
 {
+
+    @Autowired
+    UserDetailsService userDetailsService;
+
 //    private UserDetailsServiceImpl userDetailsService;
 //
 //
@@ -91,7 +96,8 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter
 
                 .and()
                 .logout()
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .logoutUrl("/logout")
+                    //.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                     .logoutSuccessUrl("/login") //login
                 .and()
 
@@ -105,7 +111,8 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter
                 .rememberMe()
                     .tokenValiditySeconds(2592000)
                     .key("mySecret!")
-                    .rememberMeParameter("checkRememberMe");
+                    .rememberMeParameter("checkRememberMe")
+                    .userDetailsService(userDetailsService);
     }
 
 }

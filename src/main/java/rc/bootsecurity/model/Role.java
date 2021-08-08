@@ -55,16 +55,12 @@ public class Role implements GrantedAuthority {
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
 
 //            indexes = {
 //                @Index(name = "idx1", columnList = "role_id"),
 //                @Index(name = "idx2", columnList = "user_id")
 //            }
-
-            uniqueConstraints = {
-                    @UniqueConstraint(columnNames = {"role_id", "user_id" })
-            }
     )
 
     //@ForeignKey(name = "fk_testkey", inverseName = "fk_testkey_inverse")

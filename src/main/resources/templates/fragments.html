@@ -23,18 +23,23 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+
                 <li class="nav-item">
                     <a class="nav-link" href="#" th:href="@{/index}"><i class="fa fa-home"></i>Home</a>
                 </li>
+
                 <li sec:authorize="isAuthenticated()" class="nav-item">
                     <a class="nav-link" href="#" th:href="@{/profile}">Profile</a>
                 </li>
+
                 <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
                     <a class="nav-link" href="#" th:href="@{/admin/index}">Admin</a>
                 </li>
+
                 <li sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')" class="nav-item">
                     <a class="nav-link" href="#" th:href="@{/management/index}">Management</a>
                 </li>
+
                 <li sec:authorize="false">
                     | [[${#httpServletRequest.requestURI}]] |
                     [[${#httpServletRequest.requestURI.contains('login')}]] |
@@ -45,9 +50,11 @@
             </ul>
         </div>
 
-        <span sec:authorize="isAuthenticated()" class="mr-3">
-            <span sec:authentication="name" class="mr-1"></span>
-            <span sec:authentication="principal.authorities"></span>
+        <span sec:authorize="isAuthenticated()" class="navbar-nav mr-3">
+            <a class="nav-link" href="#" th:href="@{/profile}">
+                <span sec:authentication="name" class="mr-1"></span>
+                <span sec:authentication="principal.authorities"></span>
+            </a>
         </span>
 
         <a class="nav-link" href="#" sec:authorize="isAnonymous()" th:href="@{/register}">Register | </a>
