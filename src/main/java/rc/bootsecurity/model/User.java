@@ -6,10 +6,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @NoArgsConstructor
@@ -37,12 +34,19 @@ public class User {
 
     private int active;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+
+//            indexes = {
+////                    @Index(name = "idx1", columnList = "role_id"),
+////                    @Index(name = "idx2", columnList = "user_id")
+//            }
+
+    )
+    private Collection<Role> roles;
 
     //private String permissions = "";
 

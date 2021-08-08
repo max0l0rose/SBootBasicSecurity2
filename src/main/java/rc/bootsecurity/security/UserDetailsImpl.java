@@ -29,7 +29,7 @@ public class UserDetailsImpl implements UserDetails {
 //        });
 
         // Extract list of roles (ROLE_name)
-        Set<Role> set = user.get().getRoles();
+        Collection<Role> set = user.get().getRoles();
         return set;
 //        set.forEach(r -> {
 //                //GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + r);

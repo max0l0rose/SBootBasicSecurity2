@@ -6,6 +6,8 @@ import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 // Эта хрень не нужна потому что роли должны быть в базе
@@ -49,12 +51,24 @@ public class Role implements GrantedAuthority {
     }
 
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "user_role",
             joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private Set<User> users;
+            inverseJoinColumns = @JoinColumn(name = "user_id"),
+
+//            indexes = {
+//                @Index(name = "idx1", columnList = "role_id"),
+//                @Index(name = "idx2", columnList = "user_id")
+//            }
+
+            uniqueConstraints = {
+                    @UniqueConstraint(columnNames = {"role_id", "user_id" })
+            }
+    )
+
+    //@ForeignKey(name = "fk_testkey", inverseName = "fk_testkey_inverse")
+    private Collection<User> users;
 
 
     @Override
