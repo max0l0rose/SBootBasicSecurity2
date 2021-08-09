@@ -7,6 +7,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import rc.bootsecurity.db.UserRepository;
 import rc.bootsecurity.model.User;
+import rc.bootsecurity.service.MyService;
+
+import java.util.Optional;
 
 @Configuration
 @Service
@@ -20,7 +23,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(s);
+        User user = Optional.ofNullable(userRepository.findByUsername(s)).orElseThrow(() -> new UsernameNotFoundException(s));
         UserDetailsImpl userDetails = new UserDetailsImpl(user);
         return userDetails;
     }

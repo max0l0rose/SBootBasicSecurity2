@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import rc.bootsecurity.model.Role;
+import rc.bootsecurity.model.Status;
 import rc.bootsecurity.model.User;
 
 import java.util.*;
@@ -29,8 +30,8 @@ public class UserDetailsImpl implements UserDetails {
 //        });
 
         // Extract list of roles (ROLE_name)
-        Collection<Role> set = user.get().getRoles();
-        return set;
+        Collection<Role> collection = user.get().getRoles();
+        return collection;
 //        set.forEach(r -> {
 //                //GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + r);
 //                //r.setAuthority("ROLE_" + r.getName());
@@ -67,7 +68,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        int act = user.get().getActive();
-        return act == 1;
+        Status stat = user.get().getStatus();
+        return stat == Status.ACTIVE;
     }
 }

@@ -33,8 +33,13 @@
                         <div class="form-group">
                             <label for="password">Password</label>
                             <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class='error alert-danger'></div>
-                            <input type="password" class="form-control" id="password" name="password" th:value="*{password}"
-                                   placeholder="Password">
+                            <input type="password" class="form-control" data-toggle="password" id="password" name="password" th:value="*{password}"
+                                   placeholder="Password"><div class="input-group-append">
+                                <div class="input-group-text">
+                                    <a href=""><i class="fa fa-eye-slash"></i></a>
+                                </div>
+                            </div>
+
                         </div>
 
                         <div class="form-actions" style="margin-top: 12px;">

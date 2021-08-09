@@ -1,4 +1,4 @@
-package rc.bootsecurity.Services;
+package rc.bootsecurity.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

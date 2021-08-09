@@ -20,19 +20,16 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-public class Role implements GrantedAuthority {
+public class Role extends BaseEntity
+                implements GrantedAuthority {
 
     public Role() {
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
     @Column(nullable = false)
     @NotNull(message = "Name may not be null........")
     //@Enumerated(EnumType.STRING)
-    private String name;
+    private String authority;
 
 
 //    public String getName() {
@@ -40,15 +37,16 @@ public class Role implements GrantedAuthority {
 //    };
 
 
-    @Override
-    public String getAuthority() {
-        return name; //"ROLE_" +
-    }
+    // --------------------------------------------
+    //@Override
+//    public String getAuthority() {
+//        return name; //"ROLE_" +
+//    }
 
 
-    public void setAuthority(String s) {
-        name = s; //RoleEnum.valueOf(s);
-    }
+//    public void setAuthority(String s) {
+//        name = s; //RoleEnum.valueOf(s);
+//    }
 
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -69,6 +67,6 @@ public class Role implements GrantedAuthority {
 
     @Override
     public String toString() {
-        return "Role{" + name + '}';
+        return "Role{" + authority + '}';
     }
 }

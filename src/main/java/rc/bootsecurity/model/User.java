@@ -14,11 +14,7 @@ import java.util.*;
 @Getter
 @Setter
 @Builder
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+public class User extends BaseEntity {
 
     @NotNull(message = "Name may not be null........")
     @Size(min=10, max=20, message = "Size name 10-20")
@@ -31,8 +27,6 @@ public class User {
     @NotEmpty(message = "Name may not be empty.")
     @Column(nullable = false)
     private String password;
-
-    private int active;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

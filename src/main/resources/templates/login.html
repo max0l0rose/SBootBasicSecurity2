@@ -49,6 +49,11 @@
                             <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class='error alert-danger'></div>
                             <input type="password" class="form-control" id="password" name="password" th:value="*{password}"
                                    placeholder="Password">
+
+                            <div class="input-group-addon">
+                                <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                            </div>
+
                         </div>
 
                         <div class="form-check">

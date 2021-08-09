@@ -1,6 +1,5 @@
-package rc.bootsecurity.Services;
+package rc.bootsecurity.service;
 
-import javafx.scene.chart.ScatterChart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,10 +8,7 @@ import org.springframework.stereotype.Component;
 import rc.bootsecurity.db.UserRepository;
 import rc.bootsecurity.model.User;
 
-import javax.transaction.Transactional;
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 
 @Component
@@ -25,8 +21,6 @@ public class UserService implements MyService<User> {
 	@Autowired
 	private UserRepository userRepository;
 
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 ////	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 ////	static final String JDBC_DB_URL = "jdbc:mysql://localhost:3306/tutorialDb";
@@ -64,6 +58,11 @@ public class UserService implements MyService<User> {
 //	}
 
 
+	public Optional<User> findByName(String name) {
+		return Optional.ofNullable(userRepository.findByUsername(name));
+	}
+
+
 	public Page<User> getPage(Pageable page) {
 		return userRepository.findAll(page);
 //		try {
@@ -84,92 +83,77 @@ public class UserService implements MyService<User> {
 
 
 	public Optional<User> show(long id) {
+//		Optional<User> u = Optional.ofNullable(null);
+//		u.filter()
+
 		return userRepository.findById(id);
 
-	}
-
-
-
-	public Optional<User> findByName(String name) {
+//		ResultSet set;
 //		try {
-			User u = userRepository.findByUsername(name);
-			return Optional.ofNullable(u);
+//			PreparedStatement statement = conn.prepareStatement(
+//					"SELECT * FROM users WHERE id = ?");
+//			statement.setInt(1, id);
+//			set = statement.executeQuery();
+//			set.next();
+//			User newUser = new User();
+//			newUser.setId(id);
+//			newUser.setName(set.getString("name"));
+//			return Optional.of(newUser);
+//		} catch (SQLException e) {
+//			e.printStackTrace();
 //		}
-//		catch (Exception ex) {
-//			throw new Exception("qqq");
+//		catch (Exception e) {
+//			e.printStackTrace();
 //		}
-//		return Optional.empty();
+//		return Optional.of(null);
 	}
 
 
-	//@Transactional
+
+
 	public User save(User user) {
-
-		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-//		Set<Role> roles = new HashSet<>();
-//		roles.add(roleDao.getOne(1L));
-//		user.setRoles(roles);
-		//userRepository.save(user);
-
 		return userRepository.save(user);
+//		try {
+//			PreparedStatement statement = conn.prepareStatement(
+//					"INSERT INTO users (name) VALUES (?)");
+//			statement.setString(1, user.getName());
+//			statement.executeUpdate();
+//			return true;
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return false; //users.add(user);
 	}
 
+
+//	@Deprecated
+//	public boolean update(User user) {
+////		try {
+////			PreparedStatement statement = conn.prepareStatement(
+////					"UPDATE users SET name = ? WHERE id = ?");
+////			statement.setString(1, user.getName());
+////			statement.setInt(2, user.getId());
+////			statement.executeUpdate();
+////			return true;
+////		} catch (SQLException e) {
+////			e.printStackTrace();
+////		}
+//		return false;
+//	}
 
 
 	public void delete(long id) {
 		userRepository.deleteById(id);
+//		try {
+//			PreparedStatement statement = conn.prepareStatement(
+//					"DELETE FROM users WHERE id = ?");
+//			statement.setInt(1, id);
+//			statement.executeUpdate();
+//			return true;
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		return false;
 	}
 
 }
-
-
-
-
-
-
-
-
-//
-//@Component
-//public class UsersDAO {
-//	private static int userid = 0;
-//
-//	ArrayList<User> users;
-//
-//	{
-//		users = new ArrayList<>();
-//
-//		users.add(new User(++userid, "Vasya"));
-//		users.add(new User(++userid, "Rosa"));
-//		users.add(new User(++userid, "Luna))"));
-//	}
-//
-//	public List<User> index() {
-//		return users;
-//	}
-//
-//
-//	public Optional<User> show(int id) {
-//		return users.stream().filter(u -> u.getId() == id).findAny();//.orElse(null);
-//	}
-//
-//
-//	public boolean save(User user) {
-//		user.setId(++userid);
-//		return users.add(user);
-//	}
-//
-//
-//	public boolean update(User user) {
-//		User userToBeUpdated = show(user.getId()).get();
-//		if (user == null)
-//			return false;
-//		return userToBeUpdated.setName(user.getName());
-//	}
-//
-//
-//	public boolean delete(int id) {
-//		return users.removeIf(e -> e.getId() == id);
-//	}
-//
-//}

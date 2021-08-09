@@ -10,7 +10,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.RedirectStrategy;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.ForwardAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -87,6 +91,13 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter
 //                                                setDefaultFailureUrl("/login?error");
 //                                    }})
                     .failureForwardUrl("/login?error")
+                    .successForwardUrl("/home")
+//                    .successHandler(new SimpleUrlAuthenticationSuccessHandler() {{
+//                                                setUseForward(true);
+//                                                setRedirectStrategy(RedirectStrategy);
+//                                                //setDefaultFailureUrl("/login?error");
+//                                    }})
+                    .defaultSuccessUrl("/home", true) //get
                     .loginProcessingUrl("/signin")
                         //.permitAll()
                     .loginPage("/login")
@@ -112,7 +123,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter
                     .tokenValiditySeconds(2592000)
                     .key("mySecret!")
                     .rememberMeParameter("checkRememberMe")
-                    .userDetailsService(userDetailsService);
+                    .userDetailsService(userDetailsService); //////////!!!!!!!!!!!!!!
     }
 
 }

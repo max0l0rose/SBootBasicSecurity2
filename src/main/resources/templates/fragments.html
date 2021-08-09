@@ -7,6 +7,17 @@
     <title>Introduction to SpringBoot Security</title>
     <meta charset="UTF-8"/>
     <link th:href="@{/bootstrap.min.css}" rel="stylesheet">
+
+
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />-->
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <!-- font awesome  -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+          integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+          crossorigin="anonymous" />
+
     <style>
         .mybrd {
             border: 1px solid red;
@@ -16,7 +27,7 @@
 </head>
 <body>
 
-<!-- Fragment #2 : Navbar contains nav links -->s
+<!-- Fragment #2 : Navbar contains nav links -->
 <div th:fragment="nav">
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <a class="navbar-brand" href="#">Boot Security</a>
@@ -25,28 +36,42 @@
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/index}"><i class="fa fa-home"></i>Home</a>
+                    <a class="nav-link"
+                       th:classappend="${#httpServletRequest.requestURI.matches('.*(home|login|regist).*')
+                                                                                    ? 'border border-info rounded' : ''}"
+                       href="#" th:href="@{/home}" th:text="#{menu.home}">
+                        <i class="fa fa-home"></i>
+                    </a>
                 </li>
 
                 <li sec:authorize="isAuthenticated()" class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/profile}">Profile</a>
+                    <a class="nav-link" href="#"
+                       th:classappend="${#httpServletRequest.requestURI.contains('prof') ? 'border border-info rounded' : ''}"
+                       th:href="@{/profile}">[[#{menu.profile}]]
+                    </a>
                 </li>
 
                 <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/admin/index}">Admin</a>
+                    <a class="nav-link"
+                       th:classappend="${#httpServletRequest.requestURI.contains('admin') ? 'border border-info rounded' : ''}"
+                       href="#" th:href="@{/admin/index}">Admin
+                    </a>
                 </li>
 
                 <li sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MANAGER')" class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/management/index}">Management</a>
+                    <a class="nav-link"
+                       th:classappend="${#httpServletRequest.requestURI.contains('manag') ? 'border border-info rounded' : ''}"
+                       href="#" th:href="@{/management/index}">Management
+                    </a>
                 </li>
 
-                <li sec:authorize="false">
-                    | [[${#httpServletRequest.requestURI}]] |
-                    [[${#httpServletRequest.requestURI.contains('login')}]] |
-                    [[${#httpServletRequest}]] |
-                    [[${httpServletRequest}]] |
-                    locale=[[${#locale}]]
-                </li>
+<!--                <li sec:authorize="false">-->
+<!--                    | [[${#httpServletRequest.requestURI}]] |-->
+<!--                    [[${#httpServletRequest.requestURI.contains('login')}]] |-->
+<!--                    [[${#httpServletRequest}]] |-->
+<!--                    [[${httpServletRequest}]] |-->
+<!--                    locale=[[${#locale}]]-->
+<!--                </li>-->
             </ul>
         </div>
 
@@ -57,16 +82,30 @@
             </a>
         </span>
 
-        <a class="nav-link" href="#" sec:authorize="isAnonymous()" th:href="@{/register}">Register | </a>
-        <form class="form-inline my-2 my-lg-0" form-method="post" th:action="@{/logout}">
-            <button sec:authorize="isAuthenticated()"
-                    class="btn btn-outline-danger my-2 my-sm-0 btn-sm"
-                    type="submit">Logout</button>
-            <button sec:authorize="isAnonymous() && not #httpServletRequest.requestURI.contains('login')"
-                    th:href="@{~/login}"
-                    class="btn btn-outline-info my-2 my-sm-0 btn-sm"
-                    type="submit">Login</button>
-        </form>
+        <a class="btn btn-outline-success mr-3" href="#"
+            sec:authorize="isAnonymous() && not #httpServletRequest.requestURI.contains('register')" th:href="@{/register}">
+            Register
+        </a>
+        <a class="btn btn-outline-info mr-3" href="#"
+            sec:authorize="isAuthenticated()" th:href="@{/logout}">
+            Logout
+        </a>
+        <a class="btn btn-outline-info mr-3" href="#"
+            sec:authorize="isAnonymous() && not #httpServletRequest.requestURI.contains('login')" th:href="@{/login}">
+            Login
+        </a>
+
+        <!--        <form class="form-inline my-2 my-lg-0" form-method="get" th:action="@{/logout}">-->
+<!--            <button sec:authorize="isAuthenticated()"-->
+<!--                    class="btn btn-outline-danger my-2 my-sm-0 btn-sm"-->
+<!--                    type="submit">Logout-->
+<!--            </button>-->
+<!--            <button sec:authorize="isAnonymous() && not #httpServletRequest.requestURI.contains('login')"-->
+<!--                    th:href="@{~/login}"-->
+<!--                    class="btn btn-outline-info my-2 my-sm-0 btn-sm"-->
+<!--                    type="submit">Login-->
+<!--            </button>-->
+<!--        </form>-->
     </nav>
 </div>
 </body>

@@ -1,31 +1,22 @@
 package rc.bootsecurity.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.DisabledException;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.WebAttributes;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
-import rc.bootsecurity.Services.UserService;
 import rc.bootsecurity.model.User;
+import rc.bootsecurity.service.UserService;
 
-import javax.jws.WebParam;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -37,7 +28,7 @@ public class HomeController
     private UserService userService;
 
 
-    @RequestMapping(value = {"/", "index"}, method = {RequestMethod.GET}) //, RequestMethod.POST
+    @RequestMapping(value = {"/", "home"}, method = {RequestMethod.GET}) //, RequestMethod.POST
     public String index(ModelMap model
 //            , @RequestHeader(name = "errorcode") String h1
 //            , @RequestHeader(name = "Content-Type") String h2
