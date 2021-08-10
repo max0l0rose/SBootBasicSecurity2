@@ -1,4 +1,45 @@
 
-.active .nav-item {
+/*input:valid ~ .input-group-append {*/
+/*    display: block;*/
+/*}*/
 
+
+/*.form-control:focus, .input-group-append {*/
+/*    !*box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(0, 0, 255, 0.6) !important;*!*/
+/*    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25) !important;*/
+/*}*/
+
+
+
+/*работает*/
+/*#basic-addon {*/
+/*    display: none;*/
+/*}*/
+
+/*input:valid ~ #basic-addon {*/
+/*    display: flex;*/
+/*}*/
+
+/*#basic-addon ~ input:valid {*/
+/*    display: flex;*/
+/*}*/
+
+
+
+/*.input-group-append {*/
+/*    display: none;*/
+/*}*/
+
+
+.mybrd {
+    border: 1px solid red;
 }
+
+/*.active .nav-item {*/
+
+/*}*/
+
+/*.border.border-info.rounded  {*/
+/*   */
+/*}*/
+

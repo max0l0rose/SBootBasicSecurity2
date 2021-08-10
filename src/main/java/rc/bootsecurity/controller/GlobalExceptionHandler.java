@@ -50,7 +50,7 @@ public class GlobalExceptionHandler {
                 arr.add(s);
             }
         }
-        model.addAttribute("err", arr);
+//        model.addAttribute("err", arr);
 
         return "error";
     }

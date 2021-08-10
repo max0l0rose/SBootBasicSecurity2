@@ -39,21 +39,39 @@
                         <!-- Login Controls -->
                         <div class="form-group">
                             <label for="username">Username</label>
-                            <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class='error alert-danger'></div>
-                            <input type="text" class="form-control" id="username" name="username" th:value="*{username}"
-                                   placeholder="Username">
+                            <div class="input-group">
+                                <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class='error alert-danger'></div>
+
+                                <div class="input-group-prepend mr-1">
+                                    <span class="input-group-text">@</span>
+                                </div>
+                                <input type="email" class="form-control" id="username" name="username" th:value="*{username}"
+                                       placeholder="Username" required="required" minlength="3">
+                                <!--                            <input name="username" placeholder="&#61447;">-->
+
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class='error alert-danger'></div>
-                            <input type="password" class="form-control" id="password" name="password" th:value="*{password}"
-                                   placeholder="Password">
+                            <div class="input-group">
+                                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class='error alert-danger'></div>
 
-                            <div class="input-group-addon">
-                                <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                <!--                                <div class="input-group-prepend">-->
+                                <!--                                    <span class="input-group-text" id="basic-addon1"><a href="" class="bi bi-eye-fill text-primary"></a></span>-->
+                                <!--                                </div>-->
+                                <input type="password" class="form-control" data-toggle="password"
+                                       id="password" name="password" required="required" minlength="3"
+                                       th:value="*{password}" placeholder="Password">
+                                <div id="basic-addon" class="input-group-append ml-1">
+                                    <span class="input-group-text">
+                                        <span class="bi bi-eye-fill"></span>
+                                    </span>
+                                </div>
+                                <!--                                <div class="input-group-append">-->
+                                <!--                                    <span class="bi bi-eye-fill"></span>-->
+                                <!--                                </div>-->
                             </div>
-
                         </div>
 
                         <div class="form-check">
@@ -71,5 +89,8 @@
         </div>
     </div>
 </div>
+
+<div th:replace="fragments.html :: footer"></div>
+
 </body>
 </html>
