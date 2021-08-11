@@ -19,6 +19,7 @@ import java.util.Date;
 @Data
 public class BaseEntity {
 
+    @Column(nullable = false)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -22,6 +22,9 @@ public class UserService implements MyService<User> {
 	private UserRepository userRepository;
 
 
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
 ////	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
 ////	static final String JDBC_DB_URL = "jdbc:mysql://localhost:3306/tutorialDb";
 ////
@@ -112,6 +115,7 @@ public class UserService implements MyService<User> {
 
 
 	public User save(User user) {
+		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		return userRepository.save(user);
 //		try {
 //			PreparedStatement statement = conn.prepareStatement(
