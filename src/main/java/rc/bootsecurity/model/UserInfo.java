@@ -16,9 +16,9 @@ import javax.validation.constraints.Size;
 @Builder
 public class UserInfo extends BaseEntity {
 
-    @NotNull(message = "Name may not be null........")
-    @Size(min = 10, max = 20, message = "Size name 10-20")
-    @NotEmpty(message = "Name may not be empty.")
+    @NotNull()
+    @Size(min = 10, max = 20)
+    //@NotEmpty()
     @Column(nullable = false)
     private String fio;
 

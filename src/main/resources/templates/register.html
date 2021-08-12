@@ -28,9 +28,9 @@
 
                             <div class="form-group">
                                 <label for="username">Username</label>
+                                <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                                                        class='text-danger form-text firstLetterUpper small'></div>
                                 <div class="input-group">
-                                    <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class='error alert-danger'></div>
-
                                     <div class="input-group-prepend mr-1">
                                         <span class="input-group-text">@</span>
                                     </div>
@@ -43,17 +43,18 @@
 
                             <div class="form-group">
                                 <label for="password">Password</label>
+                                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                                     class='text-danger form-text firstLetterUpper small'></div>
                                 <div class="input-group">
-                                    <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class='error alert-danger'></div>
-
     <!--                                <div class="input-group-prepend">-->
     <!--                                    <span class="input-group-text" id="basic-addon1"><a href="" class="bi bi-eye-fill text-primary"></a></span>-->
     <!--                                </div>-->
+<!--                                    required="required" minlength="3"-->
                                     <input type="password" class="form-control" data-toggle="password"
-                                                           id="password" name="password" required="required" minlength="3"
+                                                           id="password" name="password"
                                                            th:value="*{password}" placeholder="Password">
-                                    <div id="basic-addon" class="input-group-append ml-1">
-                                        <span class="input-group-text">
+                                    <div class="input-group-append ml-1 w-10" id="basic-addon">
+                                        <span class="input-group-text justify-content-center w-100">
     <!--                                        <span class="bi bi-eye-fill"></span>-->
                                             <i id="eye" class="fas fa-eye"></i>
                                         </span>

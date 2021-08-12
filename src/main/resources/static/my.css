@@ -1,4 +1,17 @@
 
+.w-10 {
+    width: 10% !important;
+}
+
+.w-15 {
+    width: 15% !important;
+}
+
+
+.firstLetterUpper:first-letter {
+    text-transform: uppercase;
+}
+
 /*input:valid ~ .input-group-append {*/
 /*    display: block;*/
 /*}*/

@@ -54,7 +54,7 @@ public class HomeController
     }
 
 
-    @PostMapping("reg_process")
+    @RequestMapping(value = "reg_process", method = {RequestMethod.GET, RequestMethod.POST})
     public String reg_process(ServletRequest request,
                               Model model,
                               HttpServletRequest httpServletRequest,

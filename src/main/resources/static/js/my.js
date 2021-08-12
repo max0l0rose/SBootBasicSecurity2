@@ -1,7 +1,7 @@
 const pass_field = document.querySelector("#password");
-if (pass_field) {
-    pass_field.setAttribute("minlength", 5);
-}
+// if (pass_field) {
+//     pass_field.setAttribute("minlength", 5);
+// }
 
 const show_btn = document.querySelector("#basic-addon");
 //const i = document.getElementsByClassName("i");
@@ -53,7 +53,7 @@ const eye = document.querySelector("#eye");
 if (show_btn) {
     show_btn.addEventListener("click", function() {
         //    alert("pass_field: " + pass_field);
-        var w = $(eye).width();
+        //var w = $(eye).width();
         if (pass_field.type === "password") {
             //w = eye.getBoundingClientRect().width;
             // console.log("password: " + w);
@@ -74,7 +74,7 @@ if (show_btn) {
             eye.classList.remove("fa-eye-slash");
             eye.classList.add("fa-eye");
         }
-        eye.style.width = w;
+        //eye.style.width = w;
     });
 }
 

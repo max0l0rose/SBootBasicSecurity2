@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ResourceBundleManager">
+    <file url="file://$PROJECT_DIR$/src/main/resources/ValidationMessages.properties" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/ValidationMessages_ru.properties" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/messages1.properties" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/messages1_ru.properties" />
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/main/resources/messages1.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/messages1_ru.properties" />
+      <base-name>messages1</base-name>
+    </custom-resource-bundle>
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/main/resources/ValidationMessages.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/ValidationMessages_ru.properties" />
+      <base-name>ValidationMessages</base-name>
+    </custom-resource-bundle>
+  </component>
+</project>
