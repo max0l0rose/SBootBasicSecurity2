@@ -3,6 +3,7 @@ package rc.bootsecurity.controller;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -15,10 +16,11 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class MyErrorController implements ErrorController {
+public class MyErrorController implements ErrorController
+{
 
     @GetMapping("error")
-    @ExceptionHandler(Exception.class)
+    //@ExceptionHandler(Exception.class)
     //@Override
     public ModelAndView eerror(
             // Exception ex
@@ -32,8 +34,10 @@ public class MyErrorController implements ErrorController {
 
         System.out.printf("MyErrorController: error '%d', '%s', '%s' \n", status, msg, uri);
 
-//        if (status != null) {
-//            Integer statusCode = Integer.valueOf(status.toString());
+        if (status != null) {
+            Integer code = Integer.valueOf(status.toString());
+            if (code == 403)
+                throw new AccessDeniedException("qqqqqqqqqqqqqqqq");
 //
 //            if(statusCode == HttpStatus.NOT_FOUND.value()) {
 ////                return "error-404";
@@ -41,7 +45,7 @@ public class MyErrorController implements ErrorController {
 ////            else if(statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
 ////                return "error-500";
 //            }
-//        }
+        }
 
         //model.addAttribute("err", "aaaaaaaaaaaaaaa");
         //ra.addFlashAttribute("err", "bbbbbbbbbbbbbbbbbbbbb");

@@ -27,7 +27,7 @@ public class Role extends BaseEntity
     }
 
     @Column(nullable = false)
-    @NotNull(message = "Name may not be null........")
+    @NotNull()
     //@Enumerated(EnumType.STRING)
     private String authority;
 

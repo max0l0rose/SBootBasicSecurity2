@@ -7,6 +7,36 @@ const show_btn = document.querySelector("#basic-addon");
 //const i = document.getElementsByClassName("i");
 const eye = document.querySelector("#eye");
 
+
+//if (show_btn) {
+    show_btn.addEventListener("click", function() {
+        //    alert("pass_field: " + pass_field);
+        //var w = $(eye).width();
+        if (pass_field.type === "password") {
+            //w = eye.getBoundingClientRect().width;
+            // console.log("password: " + w);
+            //alert("w = " + w);
+
+            pass_field.type = "text";
+            show_btn.classList.add("hide");
+
+            eye.classList.remove("fa-eye");
+            eye.classList.add("fa-eye-slash");
+        } else {
+            //w = eye.getBoundingClientRect().width;
+            //console.log("else: " + w);
+
+            pass_field.type = "password";
+            show_btn.classList.remove("hide");
+
+            eye.classList.remove("fa-eye-slash");
+            eye.classList.add("fa-eye");
+        }
+        //eye.style.width = w;
+    });
+//}
+
+
 // document.addEventListener("DOMContentLoaded", function(event) {
 //     alert("eye = " + eye.getBoundingClientRect().width);
 // });
@@ -49,34 +79,6 @@ const eye = document.querySelector("#eye");
 
 // eye.onloadend = function () {
 // }
-
-if (show_btn) {
-    show_btn.addEventListener("click", function() {
-        //    alert("pass_field: " + pass_field);
-        //var w = $(eye).width();
-        if (pass_field.type === "password") {
-            //w = eye.getBoundingClientRect().width;
-            // console.log("password: " + w);
-            //alert("w = " + w);
-
-            pass_field.type = "text";
-            show_btn.classList.add("hide");
-
-            eye.classList.remove("fa-eye");
-            eye.classList.add("fa-eye-slash");
-        } else {
-            //w = eye.getBoundingClientRect().width;
-            //console.log("else: " + w);
-
-            pass_field.type = "password";
-            show_btn.classList.remove("hide");
-
-            eye.classList.remove("fa-eye-slash");
-            eye.classList.add("fa-eye");
-        }
-        //eye.style.width = w;
-    });
-}
 
 //console.log("pass_field: " + pass_field);
 //alert("2");

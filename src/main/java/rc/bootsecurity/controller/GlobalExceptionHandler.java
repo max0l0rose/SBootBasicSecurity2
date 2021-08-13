@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
     // creates model attrs: 'status' and 'error' !!!!!!!!!!!!
     //@ResponseStatus(value = HttpStatus.CONFLICT, reason="IOException occured.....") // затирает модель!!!!!!!
     @GetMapping("error")
-    @ExceptionHandler(Exception.class) //IOException.class
+    //@ExceptionHandler(Exception.class) //IOException.class
     public String handle1(@ModelAttribute("exception") Exception exception
                           //, RedirectAttributes redirectAttributes
                             , Model model
@@ -47,7 +47,7 @@ public class GlobalExceptionHandler {
             if (!StringUtils.equals(s, ex.getMessage())) {
                 s = ex.getMessage();
                 ex = ex.getCause();
-                arr.add(s);
+                arr.add("*** " + s);
             }
         }
         model.addAttribute("err", arr);

@@ -24,7 +24,8 @@
                     <fieldset>
                         <!-- Thymeleaf + Spring Security error display -->
                         <div th:if="${param.error}" class="alert alert-danger">
-                            html:Invalid username and password. SPRING_SECURITY_LAST_EXCEPTION='[[${SPRING_SECURITY_LAST_EXCEPTION.message}]]'
+                            SPRING_SECURITY_LAST_EXCEPTION:<br>
+                            [[${SPRING_SECURITY_LAST_EXCEPTION.message}]]
                         </div>
 
 <!--                        <p>param.logout = [[${param.logout}]]</p>-->

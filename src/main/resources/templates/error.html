@@ -14,8 +14,8 @@
 
             <div th:if="${err != null}">
                 Errors:
-                <ul th:each="a : ${err}">
-                    <li th:text="${a}"></li>
+                <ul th:each="a : ${err}" style="list-style-type: none;">
+                    <li th:text="|=== ${a}|" class="font-weight-bold"></li>
                 </ul>
             </div><br>
 
@@ -23,7 +23,7 @@
 
             <div th:if="${param.size()>0}">
                 Params:
-                <ul th:each="a : ${param}">
+                <ul style="list-style-type: square;" th:each="a : ${param}">
                     <li th:text="|${a.key} - ${a.value[0]}|"></li>
                 </ul>
             </div>
@@ -43,12 +43,6 @@
             register.header - '[[#{register.header}]]'
         </p>
 
-        <hr class="my-4">
-        <p>Using this example, you will become more familiar with Spring Security concepts:)</p>
-        <p class="lead">
-            <a class="btn btn-primary btn-lg" href="https://spring.io/projects/spring-security" role="button">
-                Learn more about Spring Security</a>
-        </p>
     </div>
 </div>
 </body>
